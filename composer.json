@@ -1,0 +1,45 @@
+{
+  "name": "nodus-it/livewire-core",
+  "description": "An livewire core package",
+  "license": "MIT",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Bastian Schur (Nodus IT)",
+      "email": "b.schur@nodus-it.de",
+      "role": "Developer",
+      "homepage": "https://www.nodus-it.de"
+    },
+    {
+      "name": "Dominique Heinelt (naNO Consult GbR)",
+      "email": "dominique.heinelt@nano-consult.de",
+      "role": "Developer",
+      "homepage": "https://www.nano-consult.de"
+    }
+  ],
+  "require": {
+    "php": "^7.4",
+    "livewire/livewire": "2.3.*"
+  },
+  "require-dev": {
+    "orchestra/testbench": "^6.4",
+    "phpunit/phpunit": "^9.4",
+    "laravel/legacy-factories": "^1.0.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Nodus\\Packages\\LivewireCore\\": "src/",
+      "Database\\Factories\\": "database/factories/",
+      "Database\\Seeders\\": "database/seeders/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Nodus\\Packages\\LivewireDatatables\\Tests\\": "tests"
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit",
+    "test-coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-html coverage"
+  }
+}
