@@ -118,7 +118,7 @@ class LivewireComponent implements Responsable
             ]
         );
 
-        return view('nodus.packages.livewire-datatables::livewire.base-component', $parameter);
+        return view('nodus.packages.livewire-core::livewire.base-component', $parameter);
     }
 
     /**
