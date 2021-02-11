@@ -1,5 +1,5 @@
 
-# Livewire Datatables
+# Livewire Core
 [![License](https://poser.pugx.org/nodus-it/livewire-core/license)](//packagist.org/packages/nodus-it/livewire-core)
 [![Latest Unstable Version](https://poser.pugx.org/nodus-it/livewire-core/v/unstable)](//packagist.org/packages/nodus-it/livewire-core)
 [![Total Downloads](https://poser.pugx.org/nodus-it/livewire-core/downloads)](//packagist.org/packages/nodus-it/livewire-core)
