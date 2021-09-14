@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Nodus\Packages\LivewireCore;
-
 
 use Exception;
 
@@ -13,7 +11,6 @@ trait SupportsAdditionalViewParameters
      */
     public array $additionalViewParameter = [];
 
-
     public function __get($property)
     {
         if (array_key_exists($property, $this->additionalViewParameter)) {
@@ -21,6 +18,15 @@ trait SupportsAdditionalViewParameters
         }
 
         return null;
+    }
+    
+    public function __isset($property)
+    {
+        if (array_key_exists($property, $this->additionalViewParameter)) {
+            return true;
+        }
+
+        return false;
     }
 
     public function checkAdditionalViewParameter(array $additionalViewParameter)
