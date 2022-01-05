@@ -11,10 +11,19 @@ class LivewireCoreServiceProvider extends ServiceProvider
 
     private string $resourcesPath = __DIR__ . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR;
 
+    public function register()
+    {
+        $this->mergeConfigFrom(__DIR__ . '/config/livewire-core.php', 'livewire-core');
+    }
+
     public function boot()
     {
-        $this->events();
         $this->loadViewsFrom($this->resourcesPath . 'views', $this->packageNamespace);
+
+        $this->publishes([__DIR__ . '/config/livewire-core.php' => config_path('livewire-core.php')], 'livewire-core:config');
+        $this->publishes([__DIR__ . '/resources/views' => resource_path('views/vendor/' . $this->packageNamespace)], 'livewire-core:views');
+
+        $this->events();
     }
 
     private function events()
@@ -22,10 +31,11 @@ class LivewireCoreServiceProvider extends ServiceProvider
         Livewire::listen(
             'component.mount',
             function ($livewireClass, $parameter) {
-                if (array_key_exists(SupportsAdditionalViewParameters::class, class_uses_recursive($livewireClass))) {
-                    if (array_key_exists('additionalViewParameter', $parameter)) {
-                        $livewireClass->checkAdditionalViewParameter($parameter[ 'additionalViewParameter' ]);
-                    }
+                if (
+                    array_key_exists(SupportsAdditionalViewParameters::class, class_uses_recursive($livewireClass)) &&
+                    array_key_exists('additionalViewParameter', $parameter)
+                ) {
+                    $livewireClass->checkAdditionalViewParameter($parameter[ 'additionalViewParameter' ]);
                 }
             }
         );

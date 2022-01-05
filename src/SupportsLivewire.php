@@ -12,7 +12,7 @@ trait SupportsLivewire
      *
      * @return LivewireComponent
      */
-    public function livewire(string $componentName, array $parameter)
+    public function livewire(string $componentName, array $parameter): LivewireComponent
     {
         $livewireComponent = new LivewireComponent($componentName, $parameter);
 

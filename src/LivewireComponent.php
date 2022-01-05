@@ -3,6 +3,10 @@
 namespace Nodus\Packages\LivewireCore;
 
 use Illuminate\Contracts\Support\Responsable;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Livewire Component Class
@@ -66,7 +70,7 @@ class LivewireComponent implements Responsable
      *
      * @return $this
      */
-    public function section(string $section)
+    public function section(string $section): self
     {
         $this->section = $section;
 
@@ -80,7 +84,7 @@ class LivewireComponent implements Responsable
      *
      * @return $this
      */
-    public function layout(string $layout)
+    public function layout(string $layout): self
     {
         $this->layout = $layout;
 
@@ -94,7 +98,7 @@ class LivewireComponent implements Responsable
      *
      * @return $this
      */
-    public function layoutParameter(array $layoutParameter)
+    public function layoutParameter(array $layoutParameter): self
     {
         $this->layoutParameter = $layoutParameter;
 
@@ -104,7 +108,7 @@ class LivewireComponent implements Responsable
     /**
      * Renders the view
      *
-     * @return mixed
+     * @return Factory|View
      */
     public function render()
     {
@@ -124,9 +128,9 @@ class LivewireComponent implements Responsable
     /**
      * Automatic response handling
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      *
-     * @return mixed|\Symfony\Component\HttpFoundation\Response
+     * @return mixed|Response
      */
     public function toResponse($request)
     {
