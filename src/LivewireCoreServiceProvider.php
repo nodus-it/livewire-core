@@ -2,6 +2,7 @@
 
 namespace Nodus\Packages\LivewireCore;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 
@@ -24,6 +25,7 @@ class LivewireCoreServiceProvider extends ServiceProvider
         $this->publishes([__DIR__ . '/resources/views' => resource_path('views/vendor/' . $this->packageNamespace)], 'livewire-core:views');
 
         $this->events();
+        $this->bladeDirectives();
     }
 
     private function events()
@@ -39,5 +41,12 @@ class LivewireCoreServiceProvider extends ServiceProvider
                 }
             }
         );
+    }
+
+    private function bladeDirectives()
+    {
+        Blade::directive('nonce', function () {
+            return "<?php if(is_callable(config('livewire-core.csp_nonce'))) echo 'nonce=\"'.config('livewire-core.csp_nonce')().'\"'; ?>";
+        });
     }
 }
