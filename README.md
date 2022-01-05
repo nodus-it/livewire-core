@@ -7,6 +7,20 @@
 [![codecov](https://codecov.io/gh/nodus-it/livewire-core/branch/master/graph/badge.svg)](https://codecov.io/gh/nodus-it/livewire-core)
 
 
-_An livewire core package._
+_The core package for all Laravel Livewire packages from Nodus-IT._
 
 **This package is currently being developed and is still in testing**
+
+## Installation
+You can install the package via composer:
+````
+composer require nodus-it/livewire-core
+````
+
+## Testing
+````
+composer test
+````
+
+## License
+The MIT License (MIT). Please see [License File](LICENCE) for more information.
