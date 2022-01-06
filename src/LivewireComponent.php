@@ -27,7 +27,7 @@ class LivewireComponent implements Responsable
      *
      * @var array
      */
-    private array $parameter;
+    private array $parameters;
 
     /**
      * Section name in extended layout
@@ -44,11 +44,11 @@ class LivewireComponent implements Responsable
     private string $layout = 'layouts.app';
 
     /**
-     * Layout parameter
+     * Layout parameters
      *
      * @var array
      */
-    private array $layoutParameter = [];
+    private array $layoutParameters = [];
 
     /**
      * Creates a new LivewireComponent instance
@@ -60,7 +60,7 @@ class LivewireComponent implements Responsable
     public function __construct(string $componentName, array $parameter = [])
     {
         $this->componentName = $componentName;
-        $this->parameter = $parameter;
+        $this->parameters = $parameter;
     }
 
     /**
@@ -80,27 +80,29 @@ class LivewireComponent implements Responsable
     /**
      * Sets the layout which livewire should extend
      *
-     * @param string $layout Layout name
+     * @param string $layout           Layout name
+     * @param array  $layoutParameters Array of layout parameters
      *
      * @return $this
      */
-    public function layout(string $layout): self
+    public function layout(string $layout, array $layoutParameters = []): self
     {
         $this->layout = $layout;
+        $this->layoutParameters = $layoutParameters;
 
         return $this;
     }
 
     /**
-     * Sets the parameter used in layout
+     * Sets the parameters used in the layout
      *
-     * @param array $layoutParameter Layout parameter
+     * @param array $layoutParameters Layout parameters
      *
      * @return $this
      */
-    public function layoutParameter(array $layoutParameter): self
+    public function layoutParameter(array $layoutParameters): self
     {
-        $this->layoutParameter = $layoutParameter;
+        $this->layoutParameters = $layoutParameters;
 
         return $this;
     }
@@ -113,10 +115,10 @@ class LivewireComponent implements Responsable
     public function render()
     {
         $parameter = array_merge(
-            $this->layoutParameter,
+            $this->layoutParameters,
             [
                 'livewire__component_name' => $this->componentName,
-                'livewire__parameter'      => $this->parameter,
+                'livewire__parameter'      => $this->parameters,
                 'livewire__section'        => $this->section,
                 'livewire__layout'         => $this->layout,
             ]
