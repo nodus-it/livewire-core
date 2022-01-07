@@ -14,7 +14,7 @@ class LivewireComponentTest extends TestCase
         $this->assertInstanceOf(LivewireComponent::class, $livewire);
         $render = $livewire->render()->getData();
         $this->assertEquals('component-name', $render[ 'livewire__component_name' ]);
-        $this->assertEquals(['parameter1' => 'a'], $render[ 'livewire__parameter' ]);
+        $this->assertEquals(['parameter1' => 'a', 'additionalViewParameter' => []], $render[ 'livewire__parameter' ]);
         $this->assertEquals('content', $render[ 'livewire__section' ]);
         $this->assertEquals('layouts.app', $render[ 'livewire__layout' ]);
     }

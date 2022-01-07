@@ -16,6 +16,16 @@ You can install the package via composer:
 composer require nodus-it/livewire-core
 ````
 
+You can publish the config file with:
+````
+php artisan vendor:publish --provider="Nodus\Packages\LivewireCore\LivewireCoreServiceProvider" --tag="livewire-core:config"
+````
+
+You can publish the blade views with:
+````
+php artisan vendor:publish --provider="Nodus\Packages\LivewireCore\LivewireCoreServiceProvider" --tag="livewire-core:views"
+````
+
 ## Usage
 ### Controller integration
 All our Livewire components can be used as standalone in your blade views as you are used to it. 

@@ -20,7 +20,6 @@ trait SupportsLivewire
     {
         $componentName = $this->resolveLivewireComponentName($componentNameOrClass);
 
-        // todo test
         if (!isset($parameter[ 'additionalViewParameter' ])) {
             $parameter[ 'additionalViewParameter' ] = $additionalViewParameter;
         }
@@ -51,8 +50,7 @@ trait SupportsLivewire
      */
     private function resolveLivewireComponentName(string $componentClass)
     {
-        // todo test
-        if (!class_exists($componentClass) && is_a($componentClass, Component::class, true)) {
+        if (!class_exists($componentClass) || !is_a($componentClass, Component::class, true)) {
             return $componentClass;
         }
 
