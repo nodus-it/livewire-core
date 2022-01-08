@@ -54,6 +54,6 @@ class CspNonce implements Htmlable, Stringable
 
     public function __toString()
     {
-        return $this->get();
+        return $this->get() ?? '';
     }
 }
