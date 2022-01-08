@@ -14,4 +14,9 @@ class TestCase extends \Orchestra\Testbench\TestCase
             LivewireCoreServiceProvider::class,
         ];
     }
+
+    public function getEnvironmentSetUp($app)
+    {
+        $app[ 'config' ]->set('app.key', 'AckfSECXIvnK5r28GVIWUAxmbBSjTsmF');
+    }
 }

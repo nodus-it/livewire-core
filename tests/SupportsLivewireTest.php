@@ -2,10 +2,9 @@
 
 namespace Nodus\Packages\LivewireCore\Tests;
 
-use Livewire\Component;
 use Nodus\Packages\LivewireCore\LivewireComponent;
-use Nodus\Packages\LivewireCore\Tests\stubs\TestLivewireComponent;
-use Nodus\Packages\LivewireCore\Tests\stubs\TestLivewireController;
+use Nodus\Packages\LivewireCore\Tests\stubs\LivewireTestComponent;
+use Nodus\Packages\LivewireCore\Tests\stubs\LivewireTestController;
 
 class SupportsLivewireTest extends TestCase
 {
@@ -35,7 +34,7 @@ class SupportsLivewireTest extends TestCase
 
     public function testLivewireWithDefaultLayoutParameters()
     {
-        $mock = new TestLivewireController();
+        $mock = new LivewireTestController();
         $livewire = $mock->livewire('component-name');
         $this->assertInstanceOf(LivewireComponent::class, $livewire);
         $this->assertArrayHasKey('layoutParameterKey', $livewire->render()->getData());
@@ -43,15 +42,15 @@ class SupportsLivewireTest extends TestCase
 
     public function testResolveLivewireComponentName()
     {
-        $mock = new TestLivewireController();
+        $mock = new LivewireTestController();
         $livewire = $mock->livewire('my.component-name');
         $this->assertInstanceOf(LivewireComponent::class, $livewire);
         $this->assertEquals('my.component-name', $livewire->render()->getData()['livewire__component_name']);
 
-        $livewire = $mock->livewire(TestLivewireComponent::class);
+        $livewire = $mock->livewire(LivewireTestComponent::class);
         $this->assertInstanceOf(LivewireComponent::class, $livewire);
         $this->assertEquals(
-            'nodus.packages.livewire-core.tests.stubs.test-livewire-component',
+            'nodus.packages.livewire-core.tests.stubs.livewire-test-component',
             $livewire->render()->getData()[ 'livewire__component_name' ]
         );
     }

@@ -4,7 +4,7 @@ namespace Nodus\Packages\LivewireCore\Tests\stubs;
 
 use Nodus\Packages\LivewireCore\SupportsLivewire;
 
-class TestLivewireController
+class LivewireTestController
 {
     use SupportsLivewire;
 
