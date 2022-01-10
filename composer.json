@@ -19,7 +19,7 @@
   ],
   "require": {
     "php": "^7.4 || ^8.0 || ^8.1",
-    "livewire/livewire": "2.3.*"
+    "livewire/livewire": "^2.3"
   },
   "require-dev": {
     "orchestra/testbench": "^6.4",
