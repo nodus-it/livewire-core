@@ -12,7 +12,7 @@ trait SupportsComponentAssets
             return '';
         }
 
-        $html = $debug ? ['<!-- Livewire Package Styles -->'] : [];
+        $html = $debug ? ['/** Livewire Package Styles **/'] : [];
 
         foreach ($this->styledComponents as $styledComponent) {
             if (!method_exists($styledComponent, 'styles')) {
