@@ -22,7 +22,7 @@
     "livewire/livewire": "^2.3"
   },
   "require-dev": {
-    "orchestra/testbench": "^6.4",
+    "orchestra/testbench": "^7.0",
     "phpunit/phpunit": "^9.4",
     "laravel/legacy-factories": "^1.0.4"
   },
