@@ -16,9 +16,9 @@ trait SupportsTranslationsByModel
     /**
      * Returns the model class used for building the auto translation keys
      *
-     * @return string
+     * @return string|null
      */
-    protected function getTranslationModelClass(): string
+    protected function getTranslationModelClass(): ?string
     {
         return $this->model;
     }
