@@ -48,7 +48,7 @@ trait SupportsLivewire
      *
      * @return string
      */
-    private function resolveLivewireComponentName(string $componentClass)
+    private function resolveLivewireComponentName(string $componentClass): string
     {
         if (!class_exists($componentClass) || !is_a($componentClass, Component::class, true)) {
             return $componentClass;

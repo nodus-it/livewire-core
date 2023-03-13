@@ -30,7 +30,7 @@ trait SupportsTranslationsByModel
      *
      * @return $this
      */
-    protected function setTranslationPrefix(?string $prefix): self
+    protected function setTranslationPrefix(?string $prefix): static
     {
         $this->translationPrefix = $prefix;
 
@@ -45,7 +45,11 @@ trait SupportsTranslationsByModel
     protected function getTranslationPrefix(): string
     {
         if ($this->translationPrefix === null) {
-            return (string)Str::of($this->getTranslationModelClass())->afterLast('\\')->snake()->plural();
+            return Str::of($this->getTranslationModelClass())
+                ->afterLast('\\')
+                ->snake()
+                ->plural()
+                ->toString();
         }
 
         return $this->translationPrefix;

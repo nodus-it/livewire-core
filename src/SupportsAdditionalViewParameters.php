@@ -29,7 +29,7 @@ trait SupportsAdditionalViewParameters
         return false;
     }
 
-    public function checkAdditionalViewParameter(array $additionalViewParameter)
+    public function checkAdditionalViewParameter(array $additionalViewParameter): void
     {
         foreach ($additionalViewParameter as $parameter => $value) {
             if (property_exists($this, $parameter)) {

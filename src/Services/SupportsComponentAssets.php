@@ -26,7 +26,7 @@ trait SupportsComponentAssets
         return implode("\n", $html);
     }
 
-    protected function minify($content)
+    protected function minify($content): string
     {
         return preg_replace('~(\v|\t|\s{2,})~m', '', $content);
     }

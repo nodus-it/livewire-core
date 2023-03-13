@@ -1,12 +1,12 @@
 <?php
 
-namespace Nodus\Packages\LivewireCore\Tests\stubs;
+namespace Nodus\Packages\LivewireCore\Tests\Stubs;
 
 use Livewire\Component;
 
 class LivewireStyledTestComponent extends Component
 {
-    public static function styles()
+    public static function styles(): string
     {
         return <<<CSS
             .test {
