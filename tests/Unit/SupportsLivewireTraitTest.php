@@ -33,7 +33,6 @@ it('is responsable', function () {
     $this->assertEquals($livewire->render(), $livewire->toResponse(new Request()));
 });
 
-
 test('the default layout can be changed', function () {
     /** @var TestCase $this */
     $mock = $this->getMockForTrait(SupportsLivewire::class);
