@@ -19,7 +19,7 @@
   ],
   "require": {
     "php": "^8.1",
-    "livewire/livewire": "^2.3"
+    "livewire/livewire": "^3.0"
   },
   "require-dev": {
     "laravel/legacy-factories": "^1.0.4",
@@ -38,7 +38,7 @@
     }
   },
   "scripts": {
-    "test": "vendor/bin/pest",
+    "test": "XDEBUG_MODE=coverage vendor/bin/pest",
     "test-coverage": "XDEBUG_MODE=coverage vendor/bin/pest --coverage --coverage-html coverage"
   },
   "extra": {

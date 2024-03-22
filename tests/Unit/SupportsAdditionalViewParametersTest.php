@@ -17,5 +17,5 @@ it('falls back to null for not defined additional view parameters', function () 
 });
 
 it('prevents passing a additional view parameter with a conflicting name', function () {
-    livewire(LivewireTestComponent::class, ['additionalViewParameter' => ['id' => 2]]);
+    livewire(LivewireTestComponent::class, ['additionalViewParameter' => ['testProperty' => 2]]);
 })->throws(Exception::class);
