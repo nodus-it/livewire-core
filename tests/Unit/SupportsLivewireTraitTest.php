@@ -7,9 +7,18 @@ use Nodus\Packages\LivewireCore\Tests\Stubs\LivewireTestComponent;
 use Nodus\Packages\LivewireCore\Tests\Stubs\LivewireTestController;
 use Nodus\Packages\LivewireCore\Tests\TestCase;
 
+class SupportsLivewireMock {
+    use SupportsLivewire;
+
+    public string $defaultLayout = 'layouts.app';
+    public string $defaultSection = 'content';
+}
+
 it('can be accessed all livewire layout data', function () {
     /** @var TestCase $this */
-    $livewire = $this->getMockForTrait(SupportsLivewire::class)->livewire('component-name', ['parameter1' => 'a']);
+    $mock = new SupportsLivewireMock();
+    $livewire = $mock->livewire('component-name', ['parameter1' => 'a']);
+
     $this->assertInstanceOf(LivewireComponent::class, $livewire);
     $render = $livewire->render()->getData();
     $this->assertEquals('component-name', $render['livewire__component_name']);
@@ -20,7 +29,8 @@ it('can be accessed all livewire layout data', function () {
 
 it('can be added additional layout parameters', function () {
     /** @var TestCase $this */
-    $livewire = $this->getMockForTrait(SupportsLivewire::class)->livewire('component-name', ['parameter1' => 'a']);
+    $mock = new SupportsLivewireMock();
+    $livewire = $mock->livewire('component-name', ['parameter1' => 'a']);
     $livewire->layoutParameter(['parameter2' => 'b']);
     $this->assertInstanceOf(LivewireComponent::class, $livewire);
     $render = $livewire->render()->getData();
@@ -29,13 +39,14 @@ it('can be added additional layout parameters', function () {
 
 it('is responsable', function () {
     /** @var TestCase $this */
-    $livewire = $this->getMockForTrait(SupportsLivewire::class)->livewire('component-name', ['parameter1' => 'a']);
+    $mock = new SupportsLivewireMock();
+    $livewire = $mock->livewire('component-name', ['parameter1' => 'a']);
     $this->assertEquals($livewire->render(), $livewire->toResponse(new Request()));
 });
 
 test('the default layout can be changed', function () {
     /** @var TestCase $this */
-    $mock = $this->getMockForTrait(SupportsLivewire::class);
+    $mock = new SupportsLivewireMock();
     $mock->defaultLayout = 'my-layout';
     $livewire = $mock->livewire('component-name', ['parameter1' => 'a']);
     $this->assertInstanceOf(LivewireComponent::class, $livewire);
@@ -44,7 +55,7 @@ test('the default layout can be changed', function () {
 
 test('the default section can be changed', function () {
     /** @var TestCase $this */
-    $mock = $this->getMockForTrait(SupportsLivewire::class);
+    $mock = new SupportsLivewireMock();
     $mock->defaultSection = 'my-section';
     $livewire = $mock->livewire('component-name', ['parameter1' => 'a']);
     $this->assertInstanceOf(LivewireComponent::class, $livewire);
