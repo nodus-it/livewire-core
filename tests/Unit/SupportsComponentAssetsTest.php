@@ -6,15 +6,21 @@ use Nodus\Packages\LivewireCore\Tests\Stubs\LivewireTestComponent;
 use Nodus\Packages\LivewireCore\Tests\Stubs\LivewireStyledTestComponent;
 use Nodus\Packages\LivewireCore\Tests\TestCase;
 
+class SupportsComponentAssetsMock {
+    use SupportsComponentAssets;
+
+    public array $styledComponents = [];
+}
+
 it('returns an empty string if no styled components are registered', function () {
     /** @var TestCase $this */
-    $mock = $this->getMockForTrait(SupportsComponentAssets::class);
+    $mock = new SupportsComponentAssetsMock();
     $this->assertEquals('', $mock->styles());
 });
 
 it('returns an empty string for a registered styled component without styles', function () {
     /** @var TestCase $this */
-    $mock = $this->getMockForTrait(SupportsComponentAssets::class);
+    $mock = new SupportsComponentAssetsMock();
     $mock->styledComponents = [LivewireTestComponent::class];
 
     $this->assertEquals('', $mock->styles());
@@ -23,7 +29,7 @@ it('returns an empty string for a registered styled component without styles', f
 it('returns the minified styles in disabled debug mode', function () {
     /** @var TestCase $this */
     Config::set('app.debug', false);
-    $mock = $this->getMockForTrait(SupportsComponentAssets::class);
+    $mock = new SupportsComponentAssetsMock();
     $mock->styledComponents = [LivewireStyledTestComponent::class];
     $css = $mock->styles();
 
@@ -34,7 +40,7 @@ it('returns the minified styles in disabled debug mode', function () {
 it('returns the unminified styles in enabled debug mode', function () {
     /** @var TestCase $this */
     Config::set('app.debug', true);
-    $mock = $this->getMockForTrait(SupportsComponentAssets::class);
+    $mock = new SupportsComponentAssetsMock();
     $mock->styledComponents = [LivewireStyledTestComponent::class];
     $css = $mock->styles();
 

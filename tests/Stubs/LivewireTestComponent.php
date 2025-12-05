@@ -9,6 +9,8 @@ class LivewireTestComponent extends Component
 {
     use SupportsAdditionalViewParameters;
 
+    public int $testProperty = 1;
+
     public function render(): string
     {
         return <<<'blade'

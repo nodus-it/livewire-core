@@ -29,6 +29,14 @@ trait SupportsAdditionalViewParameters
         return false;
     }
 
+    /**
+     * @throws Exception
+     */
+    public function mountSupportsAdditionalViewParameters(): void
+    {
+        $this->checkAdditionalViewParameter($this->additionalViewParameter);
+    }
+
     public function checkAdditionalViewParameter(array $additionalViewParameter): void
     {
         foreach ($additionalViewParameter as $parameter => $value) {

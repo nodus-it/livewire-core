@@ -11,6 +11,7 @@
 |
 */
 
+use Livewire\Features\SupportTesting\Testable;
 use Livewire\Testing\TestableLivewire;
 use Nodus\Packages\LivewireCore\Tests\TestCase;
 
@@ -50,7 +51,7 @@ function callMethod(object $object, string $methodName, ...$args)
     return $method->invoke($object, ...$args);
 }
 
-function livewire(string $name, array $params = []): TestableLivewire
+function livewire(string $name, array $params = []): Testable
 {
     return \Pest\Livewire\livewire($name, $params);
 }

@@ -13,50 +13,34 @@ class LivewireCoreServiceProvider extends ServiceProvider
 
     private string $resourcesPath = __DIR__ . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR;
 
-    public function register()
+    public function register(): void
     {
         $this->mergeConfigFrom(__DIR__ . '/config/livewire-core.php', 'livewire-core');
     }
 
-    public function boot()
+    public function boot(): void
     {
         $this->loadViewsFrom($this->resourcesPath . 'views', $this->packageNamespace);
 
         $this->registerBindings();
-        $this->registerLivewireEvents();
         $this->registerVendorPublishes();
         $this->registerBladeDirectives();
     }
 
-    private function registerBindings()
+    private function registerBindings(): void
     {
         $this->app->singleton(CspNonce::class, function () {
             return new CspNonce();
         });
     }
 
-    private function registerLivewireEvents()
-    {
-        Livewire::listen(
-            'component.mount',
-            function ($livewireClass, $parameter) {
-                if (
-                    array_key_exists(SupportsAdditionalViewParameters::class, class_uses_recursive($livewireClass)) &&
-                    array_key_exists('additionalViewParameter', $parameter)
-                ) {
-                    $livewireClass->checkAdditionalViewParameter($parameter[ 'additionalViewParameter' ]);
-                }
-            }
-        );
-    }
-
-    private function registerVendorPublishes()
+    private function registerVendorPublishes(): void
     {
         $this->publishes([__DIR__ . '/config/livewire-core.php' => config_path('livewire-core.php')], 'livewire-core:config');
         $this->publishes([__DIR__ . '/resources/views' => resource_path('views/vendor/' . $this->packageNamespace)], 'livewire-core:views');
     }
 
-    private function registerBladeDirectives()
+    private function registerBladeDirectives(): void
     {
         Blade::directive('nonce', function () {
             return "<?php echo app(\Nodus\Packages\LivewireCore\Services\CspNonce::class)->toHtml() ?>";
